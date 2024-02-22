@@ -1,0 +1,31 @@
+---
+const {
+  slug,
+  data: { title, description, date },
+} = Astro.props;
+
+const format = new Intl.DateTimeFormat("en-us", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<article>
+  <a href={`/posts/${slug}`}>{title}</a>
+  <br />
+  <time datetime={date.toISOString()}>Published on {format.format(date)}</time>
+
+  <p>{description}</p>
+</article>
+
+<style>
+  a {
+    font-size: 18px;
+  }
+
+  time {
+    font-size: 14px;
+    font-style: italic;
+  }
+</style>
