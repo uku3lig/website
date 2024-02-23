@@ -1,15 +1,17 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 import PageLayout from "../layouts/PageLayout.astro";
 import PostEntry from "../components/PostEntry.astro";
+
+const about = await getEntry("about", "about");
+const { Content } = await about.render();
 
 const posts = await getCollection("posts");
 ---
 
 <PageLayout title="Hi! I'm uku">
-  <p>i code</p>
+  <Content />
 
-  <h2>Posts</h2>
   <ul>
     {
       posts
