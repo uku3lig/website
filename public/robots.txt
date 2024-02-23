@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://uku3lig.net/sitemap-index.xml
