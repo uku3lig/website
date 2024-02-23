@@ -11,15 +11,18 @@ const format = new Intl.DateTimeFormat("en-us", {
 });
 ---
 
-<article>
+<li class="post-entry">
   <a href={`/posts/${slug}`}>{title}</a>
-  <br />
   <time datetime={date.toISOString()}>Published on {format.format(date)}</time>
-
   <p>{description}</p>
-</article>
+</li>
 
 <style>
+  .post-entry {
+    display: flex;
+    flex-direction: column;
+  }
+
   a {
     font-size: 18px;
   }
@@ -27,5 +30,9 @@ const format = new Intl.DateTimeFormat("en-us", {
   time {
     font-size: 14px;
     font-style: italic;
+  }
+
+  p {
+    margin-block-end: 3px;
   }
 </style>

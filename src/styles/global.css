@@ -60,7 +60,7 @@ pre {
   border: 1px solid var(--tertiary-bg);
 }
 
-article,
+.post-entry,
 blockquote {
   margin-inline-start: 0;
   padding-inline-start: 1rem;
@@ -99,7 +99,7 @@ h6 {
 }
 
 .container {
-  max-inline-size: 60ch;
+  max-inline-size: 70ch;
   margin-inline: auto;
 }
 

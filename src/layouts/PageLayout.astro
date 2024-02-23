@@ -21,14 +21,12 @@ const { title, description } = Astro.props;
     <header>
       <div class="container">
         <h1>{title}</h1>
-        <h3><i>{description}</i></h3>
+        {description && <p>{description}</p>}
       </div>
     </header>
 
-    <main>
-      <div class="container">
-        <slot />
-      </div>
+    <main class="container">
+      <slot />
     </main>
 
     <Footer />
