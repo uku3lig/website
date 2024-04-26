@@ -6,9 +6,7 @@ const { title, date, description, tags } = Astro.props;
 const dateISO = date.toISOString().split("T")[0];
 ---
 
-<PageLayout {title}>
-  <meta slot="head" name="og:description" content={description} />
-
+<PageLayout {title} {description}>
   <Fragment slot="header">
     <span>{description}</span>
     <span class="info">
