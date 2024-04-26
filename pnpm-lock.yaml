@@ -11,17 +11,17 @@ dependencies:
   '@astrojs/sitemap':
     specifier: 3.1.1
     version: 3.1.1
+  '@fontsource/inter':
+    specifier: 5.0.18
+    version: 5.0.18
   '@fontsource/iosevka':
     specifier: 5.0.7
     version: 5.0.7
-  '@fontsource/roboto':
-    specifier: 5.0.8
-    version: 5.0.8
   astro:
     specifier: 4.4.1
     version: 4.4.1(typescript@5.3.3)
   reading-time:
-    specifier: ^1.5.0
+    specifier: 1.5.0
     version: 1.5.0
   rehype-autolink-headings:
     specifier: 7.1.0
@@ -871,12 +871,12 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /@fontsource/iosevka@5.0.7:
-    resolution: {integrity: sha512-X8s5hob/XEMPgY6JsgIwVRYsBMOxeSWlSXAWqZWeFcSF/ZyUsq/ut2fqgOlhUweBqS/ttiPBwJLXl7EPJsWqEg==}
+  /@fontsource/inter@5.0.18:
+    resolution: {integrity: sha512-YCsoYPTcs713sI7tLtxaPrIhXAXvEetGg5Ry02ivA8qUOb3fQHojbK/X9HLD5OOKvFUNR2Ynkwb1kR1hVKQHpw==}
     dev: false
 
-  /@fontsource/roboto@5.0.8:
-    resolution: {integrity: sha512-XxPltXs5R31D6UZeLIV1td3wTXU3jzd3f2DLsXI8tytMGBkIsGcc9sIyiupRtA8y73HAhuSCeweOoBqf6DbWCA==}
+  /@fontsource/iosevka@5.0.7:
+    resolution: {integrity: sha512-X8s5hob/XEMPgY6JsgIwVRYsBMOxeSWlSXAWqZWeFcSF/ZyUsq/ut2fqgOlhUweBqS/ttiPBwJLXl7EPJsWqEg==}
     dev: false
 
   /@humanwhocodes/config-array@0.11.14:

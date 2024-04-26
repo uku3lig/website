@@ -1,10 +1,9 @@
-@import "@fontsource/roboto/latin.css";
-@import "@fontsource/roboto/latin-italic.css";
+@import "@fontsource/inter/latin.css";
 @import "@fontsource/iosevka/latin.css";
 @import "@fontsource/iosevka/latin-italic.css";
 
 :root {
-  --font-sans: "Roboto", sans-serif;
+  --font-sans: "Inter", sans-serif;
   --font-mono: "Iosevka", monospace;
 
   --background-color: #16191d;
