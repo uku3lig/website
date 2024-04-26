@@ -2,15 +2,49 @@
 import { getCollection, getEntry } from "astro:content";
 import PageLayout from "../layouts/PageLayout.astro";
 import PostEntry from "../components/PostEntry.astro";
+import { Icon } from "astro-icon/components";
 
 const about = await getEntry("about", "about");
 const { Content } = await about.render();
 
 const posts = await getCollection("posts");
+
+const links = {
+  github: "https://github.com/uku3lig",
+  modrinth: "https://modrinth.com/user/uku",
+  twitter: "https://twitter.com/uku3lig",
+  youtube: "https://youtube.com/@uku3lig",
+  twitch: "https://twitch.tv/uku3lig",
+};
 ---
 
 <PageLayout title="uku's website">
   <Content />
+
+  <h2>Contact me</h2>
+
+  <ul>
+    <li>
+      <a href="https://matrix.to/#/@uku:m.uku.moe">@uku:m.uku.moe</a> on matrix
+    </li>
+    <li>
+      <a href="mailto:hi@uku.moe">hi@uku.moe</a> via email
+    </li>
+  </ul>
+
+  <h2>Useful links</h2>
+
+  <div class="icons">
+    {
+      Object.entries(links).map(([name, url]) => (
+        <a href={url}>
+          <Icon {name} width={32} height={32} aria-label={name} />
+        </a>
+      ))
+    }
+  </div>
+
+  <h2>Recent posts</h2>
 
   <ul>
     {
@@ -21,3 +55,26 @@ const posts = await getCollection("posts");
     }
   </ul>
 </PageLayout>
+
+<style>
+  .icons {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+
+    a {
+      transition: color 0.2s;
+      color: var(--text-color);
+    }
+
+    a:hover {
+      color: var(--accent-color);
+    }
+  }
+
+  h2::before {
+    content: "#";
+    color: var(--accent-color);
+    margin-right: 0.25rem;
+  }
+</style>
