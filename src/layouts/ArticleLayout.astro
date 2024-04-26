@@ -1,0 +1,32 @@
+---
+import PageLayout from "./PageLayout.astro";
+
+const { title, date, description, tags } = Astro.props;
+
+const dateISO = date.toISOString().split("T")[0];
+---
+
+<PageLayout {title}>
+  <meta slot="head" name="og:description" content={description} />
+
+  <Fragment slot="header">
+    <span>{description}</span>
+    <span class="info">
+      Published on {dateISO} - tags: {
+        tags.map((tag: string) => <a href={`/tags/${tag}`}>{tag}</a>)
+      }
+    </span>
+  </Fragment>
+
+  <slot />
+</PageLayout>
+
+<style>
+  .info {
+    font-size: 14px;
+    font-style: italic;
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+  }
+</style>

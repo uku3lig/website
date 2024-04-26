@@ -4,7 +4,7 @@ import "../styles/global.css";
 import Navigation from "../components/Navigation.astro";
 import Footer from "../components/Footer.astro";
 
-const { title, description } = Astro.props;
+const { title } = Astro.props;
 ---
 
 <html lang="en">
@@ -14,8 +14,18 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
 
+    <meta name="og:title" content={title} />
+    <meta name="og:type" content="website" />
+    <meta
+      name="og:image"
+      content="https://avatars.githubusercontent.com/u/61147779?v=4"
+    />
+    <meta name="og:url" content={Astro.url} />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <slot name="head" />
 
     <title>{title}</title>
   </head>
@@ -25,7 +35,7 @@ const { title, description } = Astro.props;
     <header>
       <div class="container">
         <h1>{title}</h1>
-        {description && <i>{description}</i>}
+        <slot name="header" />
       </div>
     </header>
 
