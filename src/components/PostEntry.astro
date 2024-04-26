@@ -1,19 +1,21 @@
 ---
+import readingTime from "reading-time";
+
 const {
   slug,
   data: { title, description, date },
+  body,
 } = Astro.props;
 
-const format = new Intl.DateTimeFormat("en-us", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-});
+const readTime = readingTime(body).text;
+const dateIso = date.toISOString().split("T")[0];
 ---
 
 <li class="post-entry">
   <a href={`/posts/${slug}`}>{title}</a>
-  <time datetime={date.toISOString()}>Published on {format.format(date)}</time>
+  <span class="less-relevant">
+    <time datetime={date.toISOString()}>{dateIso}</time> - {readTime}
+  </span>
   <p>{description}</p>
 </li>
 
@@ -27,7 +29,7 @@ const format = new Intl.DateTimeFormat("en-us", {
     font-size: 18px;
   }
 
-  time {
+  .less-relevant {
     font-size: 14px;
     font-style: italic;
   }

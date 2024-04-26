@@ -16,6 +16,7 @@
     "@fontsource/iosevka": "5.0.7",
     "@fontsource/roboto": "5.0.8",
     "astro": "4.4.1",
+    "reading-time": "^1.5.0",
     "rehype-autolink-headings": "7.1.0",
     "rehype-slug": "6.0.0",
     "typescript": "5.3.3"
