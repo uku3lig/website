@@ -45,9 +45,9 @@ main {
   margin-block-end: auto;
 }
 
-ul {
-  min-inline-size: min(90vw, 70ch);
-  padding-inline-start: 0;
+ul,
+ol {
+  padding-inline-start: 1rem;
 }
 
 a {
