@@ -2,7 +2,7 @@
 title: A new website! (again)
 date: 2024-02-23
 description: uku3lig.net 5th edition (never seen before!)
-tags: ["meta"]
+tags: ["meta", "web", "astro"]
 ---
 
 finally! after all this time!
