@@ -1,0 +1,25 @@
+---
+import { getCollection } from "astro:content";
+import PostEntry from "../../components/PostEntry.astro";
+import PageLayout from "../../layouts/PageLayout.astro";
+
+const posts = await getCollection("posts");
+---
+
+<PageLayout title="Posts">
+  <ul>
+    {
+      posts
+        .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+        .map((post) => <PostEntry {...post} />)
+    }
+  </ul>
+</PageLayout>
+
+<style>
+  /* the ugliest thing ever done */
+  ul {
+    min-inline-size: min(90vw, 70ch);
+    padding-inline-start: 0;
+  }
+</style>

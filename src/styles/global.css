@@ -67,11 +67,6 @@ blockquote {
   border-inline-start: 3px solid var(--tertiary-bg);
 }
 
-ul,
-ol {
-  padding-inline-start: 1rem;
-}
-
 hr {
   border: 1px solid var(--tertiary-bg);
 }

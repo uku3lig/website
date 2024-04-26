@@ -16,7 +16,14 @@ const posts = await getCollection("posts");
     {
       posts
         .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+        .slice(0, 3)
         .map((post) => <PostEntry {...post} />)
     }
   </ul>
 </PageLayout>
+
+<style>
+  ul {
+    padding-inline-start: 1rem;
+  }
+</style>

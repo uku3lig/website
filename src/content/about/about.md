@@ -7,4 +7,4 @@ check out my pinned repos if you want to see my best repos, otherwise head to th
 - [@uku:m.uku.moe](https://matrix.to/#/@uku:m.uku.moe) on matrix
 - [hi@uku.moe](mailto:hi@uku.moe) via email
 
-## Posts
+## Recent posts
