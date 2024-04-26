@@ -17,7 +17,7 @@ const posts = await getCollection("posts");
       posts
         .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
         .slice(0, 3)
-        .map((post) => <PostEntry {...post} />)
+        .map((post) => <PostEntry {...post} showDesc={false} />)
     }
   </ul>
 </PageLayout>

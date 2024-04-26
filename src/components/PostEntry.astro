@@ -3,8 +3,9 @@ import readingTime from "reading-time";
 
 const {
   slug,
-  data: { title, description, date },
+  data: { title, description, date, tags },
   body,
+  showDesc = true,
 } = Astro.props;
 
 const readTime = readingTime(body).text;
@@ -12,11 +13,16 @@ const dateIso = date.toISOString().split("T")[0];
 ---
 
 <li class="post-entry">
-  <a href={`/posts/${slug}`}>{title}</a>
+  <a class="title" href={`/posts/${slug}`}>{title}</a>
   <span class="less-relevant">
     <time datetime={date.toISOString()}>{dateIso}</time> - {readTime}
   </span>
-  <p>{description}</p>
+  <span class="tags">
+    tags: {
+      tags.map((tag: string) => <a href={`/tag/${tag}`}>{tag}</a>) || "none :("
+    }
+  </span>
+  {showDesc && <p class="desc">{description}</p>}
 </li>
 
 <style>
@@ -25,7 +31,7 @@ const dateIso = date.toISOString().split("T")[0];
     flex-direction: column;
   }
 
-  a {
+  .title {
     font-size: 18px;
   }
 
@@ -34,7 +40,18 @@ const dateIso = date.toISOString().split("T")[0];
     font-style: italic;
   }
 
-  p {
+  .desc {
     margin-block-end: 3px;
+  }
+
+  .tags {
+    font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+
+    a {
+      color: var(--text-color);
+    }
   }
 </style>

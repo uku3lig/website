@@ -45,6 +45,11 @@ main {
   margin-block-end: auto;
 }
 
+ul {
+  min-inline-size: min(90vw, 70ch);
+  padding-inline-start: 0;
+}
+
 a {
   color: var(--accent-color);
 }

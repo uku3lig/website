@@ -1,0 +1,32 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "../../layouts/PageLayout.astro";
+import PostEntry from "../../components/PostEntry.astro";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("posts");
+
+  const tags = entries.flatMap((entry) => entry.data.tags);
+  const uniqueTags = [...new Set(tags)];
+
+  return uniqueTags.map((tag) => ({
+    params: { slug: tag },
+    props: {
+      entries: entries.filter((entry) => entry.data.tags.includes(tag)),
+    },
+  }));
+}
+
+const { slug } = Astro.params;
+const { entries } = Astro.props;
+---
+
+<PageLayout title={`Posts tagged "${slug}"`}>
+  <ul>
+    {
+      entries
+        .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+        .map((post) => <PostEntry {...post} />)
+    }
+  </ul>
+</PageLayout>
