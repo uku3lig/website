@@ -10,11 +10,17 @@ export default defineConfig({
   site: "https://uku3lig.net",
   integrations: [sitemap(), icon()],
   markdown: {
-    rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, {
-      behavior: "wrap",
-      properties: {
-        class: "heading-link"
-      }
-    }]]
-  }
+    rehypePlugins: [
+      rehypeSlug,
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: "wrap",
+          properties: {
+            class: "heading-link",
+          },
+        },
+      ],
+    ],
+  },
 });
