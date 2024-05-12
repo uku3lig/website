@@ -19,12 +19,7 @@
       }: {
         devShells.default = with pkgs;
           mkShell {
-            buildInputs = [
-              nodejs
-              nodePackages.pnpm
-            ];
-
-            packages = [nrr];
+            buildInputs = [bun];
           };
 
         formatter = pkgs.alejandra;
