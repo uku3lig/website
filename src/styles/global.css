@@ -44,6 +44,7 @@ header {
 main {
   margin-block-end: auto;
   text-align: justify;
+  width: 100%;
 }
 
 ul,
