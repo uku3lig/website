@@ -1,0 +1,55 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+---
+
+<PageLayout title="Discord server">
+  <p>
+    <b>You are about to join my official Discord server.</b> When joining, make sure
+    to:
+  </p>
+
+  <ul>
+    <li>
+      Read the rules in the <code>#rules-and-info</code> channel, and abide to them.
+      You will be banned otherwise.
+    </li>
+    <li>
+      Use the correct channels and don't spam like an idiot. If you need help,
+      open a ticket in <code>#mod-support</code> and wait patiently.
+    </li>
+  </ul>
+
+  <p>
+    Please complete the captcha below, as it allows me to filter spam and
+    potential abuse coming into my server. No data is collected.
+  </p>
+
+  <div
+    class="cf-turnstile"
+    data-sitekey="0x4AAAAAAAaemJiXmRluMxbQ"
+    data-callback="javascriptCallback"
+  >
+  </div>
+
+  <p>
+    <a
+      href="https://youtu.be/dQw4w9WgXcQ"
+      id="join-link"
+      style="display: none;"
+    >
+      Join server
+    </a>
+  </p>
+</PageLayout>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer async
+></script>
+
+<script is:inline>
+  function javascriptCallback(token) {
+    const link = document.getElementById("join-link");
+
+    link.style.display = "inline";
+    link.href = `https://api.uku3lig.net/generate_invite?token=${token}`;
+  }
+</script>
