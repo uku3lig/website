@@ -2,7 +2,7 @@
 import PageLayout from "../layouts/PageLayout.astro";
 ---
 
-<PageLayout title="Discord server">
+<PageLayout title="Discord Server" description="Join my discord server!">
   <p>
     <b>You are about to join my official Discord server.</b> When joining, make sure
     to:
@@ -42,8 +42,11 @@ import PageLayout from "../layouts/PageLayout.astro";
   </p>
 </PageLayout>
 
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer async
-></script>
+<script
+  src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+  defer
+  async
+  is:inline></script>
 
 <script is:inline>
   function javascriptCallback(token) {
