@@ -24,22 +24,39 @@ import { Image } from "astro:assets";
     position: sticky;
     inset-block-start: 0;
     background-color: var(--secondary-bg);
+    width: 100%;
   }
 
   .container {
     display: flex;
     block-size: 3rem;
     align-items: center;
+    justify-content: space-between;
     position: relative;
     gap: 12px;
   }
 
   .container > *:first-child {
     margin-inline-end: auto;
+    display: flex;
+    align-items: center;
   }
 
   a {
     color: var(--text-color);
     text-decoration: none;
+  }
+
+  img {
+    display: block;
+    vertical-align: middle;
+    height: 32px;
+    width: 32px;
+  }
+
+  @media screen and (width <=740px) {
+    nav {
+      padding-inline: 1rem;
+    }
   }
 </style>
