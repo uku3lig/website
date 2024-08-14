@@ -113,3 +113,13 @@ h6 {
   color: var(--accent-color);
   margin-inline-end: 0.25rem;
 }
+
+article {
+  img {
+    display: flex;
+    justify-content: center;
+    max-width: 95%;
+    height: auto;
+    margin: 2em auto;
+  }
+}
