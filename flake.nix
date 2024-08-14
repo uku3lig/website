@@ -20,6 +20,8 @@
         devShells.default = with pkgs;
           mkShell {
             buildInputs = [bun];
+
+	    LD_LIBRARY_PATH = lib.makeLibraryPath [stdenv.cc.cc.lib];
           };
 
         formatter = pkgs.alejandra;
