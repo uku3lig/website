@@ -9,9 +9,14 @@ const dateISO = date.toISOString().split("T")[0];
 <PageLayout {title} {description}>
   <Fragment slot="header">
     <span>{description}</span>
+    <br />
     <span class="info">
       Published on {dateISO} - tags: {
-        tags.map((tag: string) => <a href={`/tag/${tag}`}>{tag}</a>)
+        tags.map((tag: string) => (
+          <>
+            <a href={`/tag/${tag}`}>{tag}</a>&nbsp;
+          </>
+        ))
       }
     </span>
   </Fragment>
@@ -25,8 +30,5 @@ const dateISO = date.toISOString().split("T")[0];
   .info {
     font-size: 14px;
     font-style: italic;
-    display: flex;
-    flex-direction: row;
-    gap: 4px;
   }
 </style>
