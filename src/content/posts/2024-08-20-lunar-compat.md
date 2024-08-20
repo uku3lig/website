@@ -1,0 +1,159 @@
+---
+title: Making my mods compatible with Lunar Client
+date: 2024-08-20
+description: also known as a glorified enigma tutorial
+tags: ["minecraft", "reverse-engineering", "modding"]
+---
+
+Recently, [Lunar Client](https://www.lunarclient.com/) added support for the [Fabric](https://fabricmc.net) modloader (instead of their usual OptiFine build), also allowing users to add custom mods.
+Naturally, players in the 1.9+ PvP community started adding the [mods I developed](https://modrinth.com/user/uku) to their game, and they quickly noticed that two of my most popular mods, TotemCounter and TierTagger, simply did not work.
+
+## What even is Lunar Client?
+
+For those who may not know this already, Lunar Client, as the name suggests, is a custom Minecraft client made by Moonsworth designed specifically to cater towards players who like to PvP.
+It is currently one of the most popular clients (if not the most popular) available to the public; even I used it to play 1.8, until I gradually stopped playing over time.
+
+Since it's still Minecraft we're talking about, the game part of Lunar is coded in Java (or at the very least, in a language that runs on the JVM), which means we have a handful of JAR files we can decompile and take a look at!
+
+## Reverse-engineering Lunar Client
+
+Earlier, I mentioned that specifically two of my mods didn't work on Lunar. Why? The two mods have something simple in common: they both modify a player's nametag to display additional information, such as in the following screenshot:
+
+![Screenshot of a modified nametag, spelling `LT4 | uku3lig | -2`](../images/lunar-compat/nametag-example.png)
+
+However, Lunar (expectedly) seems to have completely custom nametag rendering code, to enable features such as displaying other players who use their client, or dynamically adding lines to a player's nametag (one such usage is the ping mod).
+While having custom code like this is not a bad idea inherently, it also means that anything which does mess with the vanilla rendering code (you guessed it, my mods) simply does not do anything at all.
+
+Therefore, after ignoring this issue for a while and telling players not to use Lunar if they wanted to leverage my mods' features, I decided it was finally time to take on the matter and make things work.
+The first step in our journey is finding out how Lunar handles nametag rendering, to understand why my mods do not work as-is and what I can do to make them work on Lunar.
+
+To do this, we need to find the jar files containing all of Lunar's code, which fortunately are located in plain sight at `.lunarclient/offline/multiver`. Here we can find a handful of jars, some of which are automatically downloaded third-party mods (such as sodium and iris), natives for the user's platform, language files, and mixins for some of the aforementioned mods.
+What really interests us here is (of course) `lunar.jar`, and the `common` and `modern` jars. (`genesis`, as far as I know, is only the code supposed to actually launch the game and bootstrap some stuff lunar uses)
+
+If you crack open any of these files with extremely advanced software such as WinRAR (jar files are essentially glorified zips), you can find a bunch of things like static assets, bundled libraries, ...hundreds of megabytes of mapping files?
+But most importantly, Lunar Client's very own code that fuels the client used by thousands, inside the `com.moonsworth.lunar` package.
+However, if you decide to reproduce those steps for yourself in an attempt to find something that could be of value in Lunar's code, you will notice that (almost) everything is obfuscated!
+
+![Screenshot of the tree of lunar's classes in enigma, revealing many obfuscated package and class names, all spelled using the letters I, C, H, O and R](../images/lunar-compat/obfuscated-tree.png)
+
+### Finding nametag rendering code
+
+Thankfully, it seems that Lunar only uses [ProGuard](https://github.com/Guardsquare/proguard) as an obfuscation method, which means we can still easily decompile it to (somewhat) human-readable Java code and find what we're looking for.
+
+> _Note: if you're using Nix, you can find derivations for both [Enigma](https://github.com/fabricMC/enigma) and [Vineflower](https://github.com/Vineflower/vineflower) in my flake, which can be used with these commands:_ \
+> `nix run github:uku3lig/flake#enigma` and `nix run github:uku3lig/flake#vineflower`
+
+Taking an initial quick look, we can notice that Lunar uses Mojang's official mappings, but not remapped to [intermediary](https://github.com/fabricMC/intermediary) or obfuscated, straight up uses named method and classes!
+And some methods seem to have versioning in them, such as `renderNameTag$v1_20_5`?
+
+I have not investigated all this mapping stuff in detail, but my best guess is that the Minecraft client is remapped at launch using the mapping files found in the jars, probably in a similar fashion to how Fabric does it.
+However, the exact inner workings of the mapping system are not needed for the scope of this article; it's even rather convenient that Minecraft's classes and methods are already deobfuscated since we can just search for them directly.
+
+So, nametag rendering code. It's located in the `EntityRenderer` class, under the `renderNameTag` method, which we can both look for.
+Using Vineflower to decompile the jar, we find two classes that mixin into this method: one that hooks into `EntityRenderer` and the other into `PlayerRenderer`.
+
+The `MixinEntityRenderer` class is rather short, and simply cancels nametag rendering if the entity is a player, otherwise calling an internal Lunar method.
+`MixinPlayerRenderer`, on the other hand, has a lot more code that we will need to investigate.
+
+### Understanding nametag rendering code
+
+I won't go too much in the details of my thought process here and explaining every single one of my exact steps to get to this point, but I can still give you a brief summary of my findings.
+
+As mentioned earlier, Lunar cancels the vanilla nametag rendering for player entities, which is then replaced by their own rendering code.
+This code first checks for a few things, such as the distance to the current player, then stores all the components of the nametag in a list that is passed to a class dedicated to rendering.
+The list of text components is then iterated through and each one of them is sent to another separate method, which will handle actually rendering each line.
+
+Great! We now know what method to mixin into to modify a player's nametag!
+However, I still had one small concern:
+
+![Discord screenshot of uku being scared of the obfuscation being randomized, overlaid with the definition of foreshadowing](../images/lunar-compat/foreshadowing.png)
+
+But it should be fine, right? Surely this won't happen guys trust
+
+## Actually making things compatible
+
+So, now that we know what to hook into, we need to write code for it!
+Thankfully, hooking is pretty simple:
+
+```java
+// (note: these aren't the actual names, this is just for stuff to be readable)
+@Mixin(remap = false, target = "com.moonsworth.lunar.SomeNametagRenderingClass")
+public class MixinLunarClient {
+    @WrapOperation(method = "mainRenderingMethod",
+                   at = @At(value = "INVOKE", target = "renderLine"))
+    public void addTextToNametag(/* args */, Operation<Void> original) {
+        Component modified = text.append(Component.text("hello"));
+
+        original.call(modified, /* args */);
+    }
+}
+```
+
+There are a few important things to note here:
+
+1. In the mixin annotation, we set remap to `false` because Lunar's jar is already remapped, and it would probably cause some weird issues,
+2. Still in the mixin annotation, we set the target instead of using the class directly because one of the packages is private, so referencing the class via name is not possible without access wideners,
+3. Astute readers will notice that `WrapOperation` is not one of sponge's mixin annotations, it comes from LlamaLad7's [MixinExtras](https://github.com/LlamaLad7/MixinExtras), and is a nice replacement for `@Redirect` while keeping way better compatibility with other mods,
+4. Finally, the `Component` class used here is not mojmap's `Component`, but [Adventure's `Component`](https://github.com/KyoriPowered/adventure)! It's not very blocking in this example, but we still need to have the dependency in gradle to interact with them (and have the code compile).
+
+Bundling this (simplified) example into a mod jar and adding it to Lunar Client, surprisingly enough, works!
+
+![Screenshot of Minecraft gameplay, with every player's nametag having 'balls' appended](../images/lunar-compat/simplified-example.png)
+
+_(yes, I appended balls, I know, very mature of me.)_
+
+At this point I had a working proof of concept, all that was left was to modify it to fit my mods' requirements!
+This was fairly easy, the only real roadblock was having to use adventure's `Component`s when the rest of my code used Minecraft's `Text`, but that wasn't too hard to fix either.
+And just like that, betas for TotemCounter and TierTagger were published.
+
+One remaining problem was building the mods in their current state required you to take Lunar's jar files and put them at the root of the repo, to be depended on at compile time.
+You could think that specifying the mixin target as a string would lift the requirement of the class needing to be in the classpath, but that isn't the case.
+
+Therefore, a solution was needed.
+I had the idea of making a small empty mod, replicating the class structure of the parts of Lunar I want to hook into, making me able to mixin without depending on Lunar itself.
+A few minutes later, I uploaded [lunar-mock](https://github.com/uku3lig/lunar-mock), which I could add to my mods' buildscripts!
+
+Everything was going great, a few people tested the mods and stuff worked great.
+Until one day, I woke up to this message in my [discord server](/discord):
+
+![Discord screenshot of Chrome saying TierTagger is not working for them on Lunar](../images/lunar-compat/horrifying-message.png)
+
+## Uh oh looks like they do in fact randomize the obfuscation
+
+After a quick chat with Chrome, and a log file sent to me, my worst fears were confirmed:
+
+```
+[Ichor/mixin(MIXIN)/WARN] @Mixin target com.moonsworth.lunar.SomeClass was not found TierTagger.mixins.json:MixinLunarClient from mod (unknown)
+```
+
+Turns out Lunar had updated while I was asleep, and scrambled all their obfuscated names.
+I realistically had three options going forward: maintaining lunar-mock to be compatible with every Lunar update, find another way to modify nametags, or just give up.
+
+I ultimately decided to go with option 2, and hopped right back into Enigma to try to find a viable injection point.
+After a bit of digging in the same nametag rendering class, it appeared that Lunar uses `Entity#getDisplayName` to get a player's name, which is then converted to an adventure component.
+Hooking into this is once again easy:
+
+```java
+@Mixin(PlayerEntity.class)
+public class MixinPlayerEntity {
+    @ModifyReturnValue(method = "getDisplayName", at = @At("RETURN"))
+    public Text appendCounterLunar(Text original) {
+        if (FabricLoader.getInstance().isModLoaded("ichor")) {
+            PlayerEntity self = (PlayerEntity) (Object) this;
+            return TotemCounter.showPopsInText(self, original);
+        } else {
+            return original;
+        }
+    }
+}
+```
+
+I am here once again MixinExtras' stuff, with `ModifyReturnValue` being better for mod compatibility, instead of sponge's `CallbackInfoReturnable`.
+I also check if Lunar's main mod `ichor` is loaded, keeping my [more sophisticated injector](https://github.com/uku3lig/totemcounter/blob/1.21/src/main/java/net/uku3lig/totemcounter/mixin/MixinEntityRenderer.java) in vanilla.
+
+This approach has a few advantages over hooking into Lunar Client directly:
+
+1. You don't have to depend on and deal with adventure's `Component`s, and as good as they are, having duplicate code for the same thing is annoying,
+2. It's likely going to stand the test of time, at least more than using my cheap and ugly `lunar-mock`.
+
+In the end, both my mods have been updated with Lunar Client support, and can be downloaded over at my [Modrinth page](https://modrinth.com/user/uku)!
