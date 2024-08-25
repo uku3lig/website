@@ -6,12 +6,23 @@
   --font-sans: "Inter", sans-serif;
   --font-mono: "Iosevka", monospace;
 
-  --background-color: #16191d;
-  --secondary-bg: #212529;
-  --tertiary-bg: #343a40;
-  --text-color: #f8f9fa;
-  --accent-color: #a5d8ff;
-  color-scheme: dark;
+  --background-color: #f8f9fa;
+  --secondary-bg: #dedede;
+  --tertiary-bg: #d9d9d9;
+  --text-color: black;
+  --accent-color: #41adff;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #16191d;
+    --secondary-bg: #212529;
+    --tertiary-bg: #343a40;
+    --text-color: #f8f9fa;
+    --accent-color: #a5d8ff;
+    color-scheme: dark;
+  }
 }
 
 html {
