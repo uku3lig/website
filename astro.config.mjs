@@ -8,7 +8,23 @@ import icon from "astro-icon";
 // https://astro.build/config
 export default defineConfig({
   site: "https://uku3lig.net",
-  integrations: [sitemap(), icon()],
+  integrations: [
+    sitemap(),
+    icon({
+      svgoOptions: {
+        plugins: [
+          {
+            name: "preset-default",
+            params: {
+              overrides: {
+                removeTitle: false,
+              },
+            },
+          },
+        ],
+      },
+    }),
+  ],
   markdown: {
     rehypePlugins: [
       rehypeSlug,
