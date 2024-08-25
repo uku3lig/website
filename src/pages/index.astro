@@ -11,8 +11,11 @@ const posts = await getCollection("posts");
 
 const links = {
   github: "https://github.com/uku3lig",
+  forgejo: "https://git.uku3lig.net",
   modrinth: "https://modrinth.com/user/uku",
+  maven: "https://maven.uku3lig.net",
   discord: "/discord",
+  matrix: "https://matrix.to/#/@uku:m.uku.moe",
   twitter: "https://twitter.com/uku3lig",
   youtube: "https://youtube.com/@uku3lig",
   twitch: "https://twitch.tv/uku3lig",
@@ -26,13 +29,13 @@ const links = {
 
   <ul>
     <li>
-      <a href="https://matrix.to/#/@uku:m.uku.moe">@uku:m.uku.moe</a> on matrix
+      <a href={links["matrix"]}>@uku:m.uku.moe</a> on matrix
     </li>
     <li>
       <img class="email" src="/email.png" alt="email" /> via email
     </li>
     <li>
-      via my <a href="/discord">discord server</a>
+      via my <a href={links["discord"]}>discord server</a>
     </li>
   </ul>
 
