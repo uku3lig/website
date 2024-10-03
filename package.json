@@ -13,10 +13,10 @@
   "dependencies": {
     "@astrojs/check": "^0.9.3",
     "@astrojs/rss": "^4.0.7",
-    "@astrojs/sitemap": "^3.1.6",
+    "@astrojs/sitemap": "^3.2.0",
     "@fontsource/inter": "^5.1.0",
     "@fontsource/iosevka": "^5.1.0",
-    "astro": "^4.15.6",
+    "astro": "^4.15.11",
     "astro-icon": "^1.1.1",
     "reading-time": "^1.5.0",
     "rehype-autolink-headings": "^7.1.0",
@@ -25,8 +25,8 @@
     "typescript": "^5.6.2"
   },
   "devDependencies": {
-    "@typescript-eslint/parser": "^8.6.0",
-    "eslint": "^9.10.0",
+    "@typescript-eslint/parser": "^8.8.0",
+    "eslint": "^9.11.1",
     "eslint-plugin-astro": "^1.2.4",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1"
