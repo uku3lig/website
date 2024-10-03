@@ -70,6 +70,14 @@ ol {
 
 a {
   color: var(--accent-color);
+  border: solid 1px transparent;
+}
+
+a:not(:has(svg)):hover {
+  cursor: crosshair;
+  color: var(--text-color);
+  background-color: var(--secondary-bg);
+  border-image: url("/ants.gif") 1 repeat;
 }
 
 code {
