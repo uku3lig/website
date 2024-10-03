@@ -73,7 +73,7 @@ a {
   border: solid 1px transparent;
 }
 
-a:not(:has(svg)):hover {
+a:not(:has(*), .heading-link):hover {
   cursor: crosshair;
   color: var(--text-color);
   background-color: var(--secondary-bg);
