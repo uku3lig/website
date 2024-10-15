@@ -18,7 +18,7 @@
         ...
       }: {
         devShells.default = with pkgs;
-          mkShell {
+          mkShellNoCC {
             buildInputs = [bun];
 
             LD_LIBRARY_PATH = lib.makeLibraryPath [stdenv.cc.cc.lib];
