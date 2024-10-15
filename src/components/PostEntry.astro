@@ -2,30 +2,30 @@
 import readingTime from "reading-time";
 
 interface Props {
-  slug: string;
+  id: string;
   data: {
     title: string;
     description: string;
     date: Date;
     tags: string[];
   };
-  body: string;
+  body?: string;
   showDesc?: boolean;
 }
 
 const {
-  slug,
+  id,
   data: { title, description, date, tags },
   body,
   showDesc = true,
 } = Astro.props;
 
-const readTime = readingTime(body).text;
+const readTime = body && readingTime(body).text;
 const dateIso = date.toISOString().split("T")[0];
 ---
 
 <li class="post-entry">
-  <a class="title" href={`/posts/${slug}`}>{title}</a>
+  <a class="title" href={`/posts/${id}`}>{title}</a>
   <span class="less-relevant">
     <time datetime={date.toISOString()}>{dateIso}</time> - {readTime}
   </span>
