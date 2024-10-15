@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -21,7 +21,7 @@
           mkShell {
             buildInputs = [bun];
 
-	    LD_LIBRARY_PATH = lib.makeLibraryPath [stdenv.cc.cc.lib];
+            LD_LIBRARY_PATH = lib.makeLibraryPath [stdenv.cc.cc.lib];
           };
 
         formatter = pkgs.alejandra;
