@@ -1,13 +1,13 @@
 import type { APIRoute } from "astro";
-import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
+import rss from "@astrojs/rss";
 
 export const GET: APIRoute = async ({ site }) => {
   const posts = await getCollection("posts");
 
   return rss({
     title: "uku's blog",
-    description: "i can't think of a good description :(",
+    description: "i write things here sometimes",
     site: site || "",
     items: posts.map((post) => ({
       title: post.data.title,
