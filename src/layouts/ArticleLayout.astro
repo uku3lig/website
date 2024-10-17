@@ -1,6 +1,13 @@
 ---
 import PageLayout from "./PageLayout.astro";
 
+interface Props {
+  title: string;
+  date: Date;
+  description: string;
+  tags: string[];
+}
+
 const { title, date, description, tags } = Astro.props;
 
 const dateISO = date.toISOString().split("T")[0];
@@ -12,7 +19,7 @@ const dateISO = date.toISOString().split("T")[0];
     <br />
     <span class="info">
       Published on {dateISO} - tags: {
-        tags.map((tag: string) => (
+        tags.map((tag) => (
           <>
             <a href={`/tag/${tag}`}>{tag}</a>&nbsp;
           </>
