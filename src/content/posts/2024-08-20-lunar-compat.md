@@ -40,8 +40,10 @@ However, if you decide to reproduce those steps for yourself in an attempt to fi
 
 Thankfully, it seems that Lunar only uses [ProGuard](https://github.com/Guardsquare/proguard) as an obfuscation method, which means we can still easily decompile it to (somewhat) human-readable Java code and find what we're looking for.
 
-> _Note: if you're using Nix, you can find derivations for both [Enigma](https://github.com/fabricMC/enigma) and [Vineflower](https://github.com/Vineflower/vineflower) in my flake, which can be used with these commands:_ \
-> `nix run github:uku3lig/camasca#enigma` and `nix run github:uku3lig/camasca#vineflower`
+> _Note: if you're using Nix, you can find derivations for both [Enigma](https://github.com/fabricMC/enigma) and [Vineflower](https://github.com/Vineflower/vineflower) in my flake, which can be used with these commands:_
+>
+> - `nix run github:uku3lig/camasca#enigma`
+> - `nix shell github:uku3lig/camasca#vineflower`
 
 Taking an initial quick look, we can notice that Lunar uses Mojang's official mappings, but not remapped to [intermediary](https://github.com/fabricMC/intermediary) or obfuscated, straight up uses named method and classes!
 And some methods seem to have versioning in them, such as `renderNameTag$v1_20_5`?
