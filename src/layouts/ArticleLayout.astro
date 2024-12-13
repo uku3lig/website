@@ -19,11 +19,7 @@ const dateISO = date.toISOString().split("T")[0];
     <br />
     <span class="info">
       Published on {dateISO} - tags: {
-        tags.map((tag) => (
-          <>
-            <a href={`/tag/${tag}`}>{tag}</a>&nbsp;
-          </>
-        ))
+        tags.map((tag) => <a href={`/tag/${tag}`}>{tag}</a>)
       }
     </span>
   </Fragment>
@@ -37,5 +33,9 @@ const dateISO = date.toISOString().split("T")[0];
   .info {
     font-size: 14px;
     font-style: italic;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2px;
   }
 </style>
