@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import interWoff2 from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2";
 
 import Navigation from "../components/Navigation.astro";
 import Footer from "../components/Footer.astro";
@@ -35,6 +36,14 @@ const { title, description = "welcome to my website!" } = Astro.props;
       href="https://mc-heads.net/avatar/uku3lig/32"
     />
     <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href={interWoff2}
+      crossorigin="anonymous"
+    />
 
     <title>{title}</title>
   </head>

@@ -1,9 +1,10 @@
-@import "@fontsource/inter/latin.css";
+@import "@fontsource-variable/inter/wght.css";
+@import "@fontsource-variable/inter/wght-italic.css";
 @import "@fontsource/iosevka/latin.css";
 @import "@fontsource/iosevka/latin-italic.css";
 
 :root {
-  --font-sans: "Inter", sans-serif;
+  --font-sans: "Inter Variable", sans-serif;
   --font-mono: "Iosevka", monospace;
 
   --background-color: white;
