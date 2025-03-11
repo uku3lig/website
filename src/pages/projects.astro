@@ -1,0 +1,36 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+
+const projects = [
+  {
+    name: "ukulib",
+    description: "Small library used in my minecraft mods.",
+    url: "https://modrinth.com/mod/ukulib",
+    icons: ["modrinth"],
+    photoUrl:
+      "https://raw.githubusercontent.com/uku3lig/ukulib/refs/heads/main/src/main/resources/assets/ukulib/icon.png",
+  },
+  {
+    name: "Website",
+    description:
+      "My website, that you are currently viewingaaaaaaa fnefbzie bfze ifjeoi zef oizejfoizjf ozij fze fjzef zoeijfoiezjfoizejof jzeoifjzeoif jzoeiejf zoeijf oziej f",
+    url: "https://uku3lig.net",
+    icons: ["astro", "html5", "css"],
+    photoUrl:
+      "https://opengraph.githubassets.com/cdf3c4d43a7b9f01b4b88ac2648c72ac65ad23dfe6a96371bad186db7c6c6476/uku3lig/website",
+  },
+  {
+    name: "miguel",
+    description: "lorem ipsum dolor sit amet",
+    url: "https://google.com",
+    icons: [],
+    photoUrl:
+      "https://cdn.discordapp.com/attachments/1333854231903473754/1350059317901918218/IMG_7179.jpg?ex=67d55c38&is=67d40ab8&hm=8ebe0f0a4273e8d5db4fa22323fd52d252780927b73e659108fe512c0801a4ae&",
+  },
+];
+---
+
+<PageLayout title="Projects">
+  {projects.map((p, idx) => <ProjectCard {...p} left={idx % 2 == 0} />)}
+</PageLayout>

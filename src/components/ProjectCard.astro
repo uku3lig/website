@@ -1,0 +1,99 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  name: string;
+  description: string;
+  url: string;
+  icons: string[];
+  photoUrl: string;
+  left: boolean;
+}
+
+const { name, description, url, icons, photoUrl, left } = Astro.props;
+
+const flexDirection = left ? "row" : "row-reverse";
+const textAlign = left ? "left" : "right";
+---
+
+<div class="card" id={name}>
+  <img class="photo" src={photoUrl} />
+  <div class="description">
+    <p class="title"><a href={url}>{name}</a></p>
+    <p>{description}</p>
+    <div class="icons">
+      {
+        icons.map((n) => (
+          <Icon
+            name={`simple-icons:${n}`}
+            width={32}
+            height={32}
+            aria-label={n}
+            title={n}
+          />
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style define:vars={{ flexDirection, textAlign }}>
+  a {
+    text-decoration: none;
+  }
+
+  a:hover {
+    background-color: var(--tertiary-bg);
+    text-decoration: underline;
+  }
+
+  .title {
+    color: var(--accent-color);
+    font-weight: bold;
+    font-size: 24px;
+  }
+
+  .card {
+    width: 100%;
+    height: 200px;
+    background-color: var(--secondary-bg);
+    border-radius: 20px;
+    padding: 10px;
+    margin-block-end: 20px;
+    display: flex;
+    flex-direction: var(--flexDirection);
+    gap: 20px;
+  }
+
+  .photo {
+    max-width: 50%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .description {
+    display: flex;
+    flex-direction: column;
+    text-align: var(--textAlign);
+
+    * {
+      flex-basis: content;
+      flex-grow: 0;
+    }
+  }
+
+  .icons {
+    margin-block-start: auto;
+    padding: 0;
+
+    svg {
+      margin-block-start: 15px;
+      margin-inline-end: 10px;
+    }
+  }
+
+  h2,
+  p {
+    margin-block: 3px;
+  }
+</style>
