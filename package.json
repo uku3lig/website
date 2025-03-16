@@ -16,7 +16,7 @@
     "@astrojs/sitemap": "^3.2.1",
     "@fontsource-variable/inter": "^5.2.5",
     "@fontsource/iosevka": "^5.2.5",
-    "astro": "^5.4.3",
+    "astro": "^5.5.2",
     "astro-icon": "^1.1.5",
     "reading-time": "^1.5.0",
     "rehype-autolink-headings": "^7.1.0",
