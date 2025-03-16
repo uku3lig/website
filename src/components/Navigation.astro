@@ -47,7 +47,7 @@ import { Image } from "astro:assets";
     text-decoration: none;
   }
 
-  a:hover {
+  a:not(:has(*)):hover {
     background-color: var(--tertiary-bg);
     text-decoration: underline;
   }
