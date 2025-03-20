@@ -1,9 +1,8 @@
 import { defineConfig } from "astro/config";
+import sitemap from "@astrojs/sitemap";
+import icon from "astro-icon";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
-import sitemap from "@astrojs/sitemap";
-
-import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,23 +15,7 @@ export default defineConfig({
       },
     },
   },
-  integrations: [
-    sitemap(),
-    icon({
-      svgoOptions: {
-        plugins: [
-          {
-            name: "preset-default",
-            params: {
-              overrides: {
-                removeTitle: false,
-              },
-            },
-          },
-        ],
-      },
-    }),
-  ],
+  integrations: [sitemap(), icon()],
   markdown: {
     shikiConfig: {
       themes: {
