@@ -61,14 +61,10 @@
 
 <style>
   @keyframes grow {
-    0% {
+    from {
       max-height: 0;
-      margin-block-start: -1rem;
     }
-    50% {
-      margin-block-start: 0;
-    }
-    100% {
+    to {
       max-height: 172px;
     }
   }
@@ -101,9 +97,5 @@
 
   p {
     margin-block: 4px;
-  }
-
-  h2 {
-    margin-block-start: 0;
   }
 </style>
