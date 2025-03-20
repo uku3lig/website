@@ -1,7 +1,4 @@
 <script lang="ts">
-  const FALLBACK_COVER =
-    "https://play-lh.googleusercontent.com/VFmAfWqcuV3aReZG8MMQdHRSdKWx85IW22f4RQ5xhR5U-o1_u03P7TVwsnTYa26Q1No";
-
   interface LastFmTrack {
     name: string;
     album: string;
@@ -43,7 +40,7 @@
       <h2>Now listening</h2>
       <div class="music-container">
         <img
-          src={trackData.imageUrl ?? FALLBACK_COVER}
+          src={trackData.imageUrl || "/lastfm.avif"}
           alt={`${trackData.artist} - ${trackData.name}`}
           class="album-cover"
         />
