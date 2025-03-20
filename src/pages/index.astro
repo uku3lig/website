@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import { Icon } from "astro-icon/components";
 import PageLayout from "../layouts/PageLayout.astro";
 import PostEntry from "../components/PostEntry.astro";
+import NowListening from "../components/NowListening.svelte";
 
 const posts = await getCollection("posts");
 
@@ -55,6 +56,8 @@ const links = {
     </li>
   </ul>
 
+  <NowListening client:load />
+
   <h2>Useful links</h2>
 
   <div class="icons">
@@ -100,12 +103,6 @@ const links = {
     a:hover {
       color: var(--accent-color);
     }
-  }
-
-  h2::before {
-    content: "#";
-    color: var(--accent-color);
-    margin-right: 0.25rem;
   }
 
   .email {

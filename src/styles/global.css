@@ -11,6 +11,7 @@
   --secondary-bg: #f0f0f0;
   --tertiary-bg: #cecece;
   --text-color: black;
+  --text-secondary: #747474;
   --accent-color: #0077b8;
   color-scheme: light;
 }
@@ -21,6 +22,7 @@
     --secondary-bg: #212529;
     --tertiary-bg: #343a40;
     --text-color: #f8f9fa;
+    --text-secondary: #a9a9a9;
     --accent-color: #a5d8ff;
     color-scheme: dark;
   }
@@ -134,7 +136,8 @@ h6 {
   text-decoration: none;
 }
 
-.heading-link::before {
+.heading-link::before,
+h2::before {
   content: "#";
   color: var(--accent-color);
   margin-inline-end: 0.25rem;
