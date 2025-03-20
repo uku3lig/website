@@ -136,8 +136,7 @@ h6 {
   text-decoration: none;
 }
 
-.heading-link::before,
-h2::before {
+:is(h2, h3, h4, h5, h6)::before {
   content: "#";
   color: var(--accent-color);
   margin-inline-end: 0.25rem;
