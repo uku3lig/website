@@ -1,15 +1,19 @@
 ---
-
+import { Icon } from "astro-icon/components";
 ---
 
 <footer>
   <div class="container">
     <ul>
       <li>
-        <a href="https://github.com/uku3lig/website">source</a>
+        <a href="https://github.com/uku3lig/website">
+          <Icon name="simple-icons:git" title="Source code repository" />
+        </a>
       </li>
       <li>
-        <a href="/rss.xml">rss</a>
+        <a href="/rss.xml">
+          <Icon name="simple-icons:rss" title="RSS feed" />
+        </a>
       </li>
     </ul>
     <p>
@@ -39,5 +43,6 @@
     flex-wrap: wrap;
     list-style: none;
     gap: 1rem;
+    margin-block: 0;
   }
 </style>
