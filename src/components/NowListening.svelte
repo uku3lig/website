@@ -36,14 +36,26 @@
 
 {#await getNowPlaying() then trackData}
   {#if trackData !== null}
+    {#snippet albumCover()}
+      <img
+        src={trackData.imageUrl || "/lastfm.avif"}
+        alt={`${trackData.artist} - ${trackData.name}`}
+        class="album-cover"
+      />
+    {/snippet}
+
     <div class="big-container">
       <h2>Now listening</h2>
       <div class="music-container">
-        <img
-          src={trackData.imageUrl || "/lastfm.avif"}
-          alt={`${trackData.artist} - ${trackData.name}`}
-          class="album-cover"
-        />
+        {#if trackData.album}
+          <a
+            href={`https://last.fm/music/${trackData.artist}/${trackData.album}`}
+          >
+            {@render albumCover()}
+          </a>
+        {:else}
+          {@render albumCover()}
+        {/if}
         <div>
           <p class="title">
             <a href={trackData.url} target="_blank">{trackData.name}</a>
@@ -76,6 +88,11 @@
     flex-direction: row;
     gap: 12px;
     align-items: center;
+  }
+
+  a:has(.album-cover) {
+    border: none;
+    line-height: 0;
   }
 
   .album-cover {
