@@ -87,6 +87,13 @@ code {
   font-family: var(--font-mono);
 }
 
+code:not(pre *) {
+  background-color: var(--secondary-bg) !important;
+  border: 1px solid var(--tertiary-bg);
+  border-radius: 2px;
+  padding-inline: 2px;
+}
+
 pre {
   padding: 1rem;
   background-color: var(--secondary-bg) !important;
