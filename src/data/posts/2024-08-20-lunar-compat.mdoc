@@ -19,7 +19,7 @@ Since it's still Minecraft we're talking about, the game part of Lunar is coded 
 
 Earlier, I mentioned that specifically two of my mods didn't work on Lunar. Why? The two mods have something simple in common: they both modify a player's nametag to display additional information, such as in the following screenshot:
 
-![Screenshot of a modified nametag, spelling `LT4 | uku3lig | -2`](../images/lunar-compat/nametag-example.png)
+![Screenshot of a modified nametag, spelling `LT4 | uku3lig | -2`](/lunar-compat/nametag-example.png)
 
 However, Lunar (expectedly) seems to have completely custom nametag rendering code, to enable features such as displaying other players who use their client, or dynamically adding lines to a player's nametag (one such usage is the ping mod).
 While having custom code like this is not a bad idea inherently, it also means that anything which does mess with the vanilla rendering code (you guessed it, my mods) simply does not do anything at all.
@@ -34,7 +34,7 @@ If you crack open any of these files with extremely advanced software such as Wi
 But most importantly, Lunar Client's very own code that fuels the client used by thousands, inside the `com.moonsworth.lunar` package.
 However, if you decide to reproduce those steps for yourself in an attempt to find something that could be of value in Lunar's code, you will notice that (almost) everything is obfuscated!
 
-![Screenshot of the tree of lunar's classes in enigma, revealing many obfuscated package and class names, all spelled using the letters I, C, H, O and R](../images/lunar-compat/obfuscated-tree.png)
+![Screenshot of the tree of lunar's classes in enigma, revealing many obfuscated package and class names, all spelled using the letters I, C, H, O and R](/lunar-compat/obfuscated-tree.png)
 
 ### Finding nametag rendering code
 
@@ -68,7 +68,7 @@ The list of text components is then iterated through and each one of them is sen
 Great! We now know what method to mixin into to modify a player's nametag!
 However, I still had one small concern:
 
-![Discord screenshot of uku being scared of the obfuscation being randomized, overlaid with the definition of foreshadowing](../images/lunar-compat/foreshadowing.png)
+![Discord screenshot of uku being scared of the obfuscation being randomized, overlaid with the definition of foreshadowing](/lunar-compat/foreshadowing.png)
 
 But it should be fine, right? Surely this won't happen guys trust
 
@@ -100,7 +100,7 @@ There are a few important things to note here:
 
 Bundling this (simplified) example into a mod jar and adding it to Lunar Client, surprisingly enough, works!
 
-![Screenshot of Minecraft gameplay, with every player's nametag having 'balls' appended](../images/lunar-compat/simplified-example.png)
+![Screenshot of Minecraft gameplay, with every player's nametag having 'balls' appended](/lunar-compat/simplified-example.png)
 
 _(yes, I appended balls, I know, very mature of me.)_
 
@@ -118,7 +118,7 @@ A few minutes later, I uploaded [lunar-mock](https://github.com/uku3lig/lunar-mo
 Everything was going great, a few people tested the mods and stuff worked great.
 Until one day, I woke up to this message in my [discord server](/discord):
 
-![Discord screenshot of Chrome saying TierTagger is not working for them on Lunar](../images/lunar-compat/horrifying-message.png)
+![Discord screenshot of Chrome saying TierTagger is not working for them on Lunar](/lunar-compat/horrifying-message.png)
 
 ## Uh oh looks like they do in fact randomize the obfuscation
 
