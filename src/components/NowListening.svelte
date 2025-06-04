@@ -38,7 +38,7 @@
   {#if trackData !== null}
     {#snippet albumCover()}
       <img
-        src={trackData.imageUrl || "/lastfm.avif"}
+        src={trackData.imageUrl || "/unknown.avif"}
         alt={`${trackData.artist} - ${trackData.name}`}
         class="album-cover"
       />
