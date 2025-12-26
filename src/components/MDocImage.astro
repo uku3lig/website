@@ -10,7 +10,7 @@ interface Props {
 let { src, alt } = Astro.props;
 
 const glob = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/data/images/**"
+  "/src/data/images/**",
 );
 
 const result = Object.entries(glob).find(([n]) => n.endsWith(src));
