@@ -10,7 +10,7 @@
         "@astrojs/rss": "^4.0.14",
         "@astrojs/sitemap": "^3.6.0",
         "@astrojs/svelte": "^7.2.4",
-        "@fontsource-variable/inter": "^5.2.8",
+        "@fontsource-variable/ibm-plex-sans": "^5.2.8",
         "@fontsource/iosevka": "^5.2.5",
         "@iconify-json/simple-icons": "^1.2.65",
         "astro": "^5.16.6",
@@ -155,7 +155,7 @@
 
     "@eslint/plugin-kit": ["@eslint/plugin-kit@0.4.1", "", { "dependencies": { "@eslint/core": "^0.17.0", "levn": "^0.4.1" } }, "sha512-43/qtrDUokr7LJqoF2c3+RInu/t4zfrpYdoSDfYyhg52rwLV6TnOvdG4fXm7IkSB3wErkcmJS9iEhjVtOSEjjA=="],
 
-    "@fontsource-variable/inter": ["@fontsource-variable/inter@5.2.8", "", {}, "sha512-kOfP2D+ykbcX/P3IFnokOhVRNoTozo5/JxhAIVYLpea/UBmCQ/YWPBfWIDuBImXX/15KH+eKh4xpEUyS2sQQGQ=="],
+    "@fontsource-variable/ibm-plex-sans": ["@fontsource-variable/ibm-plex-sans@5.2.8", "", {}, "sha512-n5PF2iFa0CZT0QYTPzxvZ39opC9LnU0zdoRccoADbs+Dtsd+lbXOZF7RNuIPHcQX1dKjF63sxnRImQIB5eD0Ag=="],
 
     "@fontsource/iosevka": ["@fontsource/iosevka@5.2.5", "", {}, "sha512-Zv/UHJodDug1LcnWv2u2+GPp3oWP3U6Xp16cJOsqqZQNsCu8sA/ttT331N0NypxBZ+7c8szlSRlYDcy9liZ8pw=="],
 
