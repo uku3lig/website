@@ -8,11 +8,11 @@
   --font-mono: "Iosevka", monospace;
 
   --background-color: white;
-  --secondary-bg: #f0f0f0;
-  --tertiary-bg: #cecece;
+  --secondary-bg: oklch(96.7% 0.001 286.375);
+  --tertiary-bg: oklch(87.1% 0.006 286.286);
   --text-color: black;
   --text-secondary: #747474;
-  --accent-color: #0077b8;
+  --accent-color: oklch(50% 0.134 242.749);
   color-scheme: light;
 }
 
@@ -91,7 +91,6 @@ code {
 code:not(pre *) {
   background-color: var(--secondary-bg) !important;
   border: 1px solid var(--tertiary-bg);
-  border-radius: 2px;
   padding-inline: 2px;
 }
 
