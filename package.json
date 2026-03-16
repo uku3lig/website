@@ -11,29 +11,29 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.6",
-    "@astrojs/markdoc": "^0.15.10",
-    "@astrojs/rss": "^4.0.14",
-    "@astrojs/sitemap": "^3.6.0",
-    "@astrojs/svelte": "^7.2.4",
+    "@astrojs/check": "^0.9.7",
+    "@astrojs/markdoc": "^0.15.11",
+    "@astrojs/rss": "^4.0.17",
+    "@astrojs/sitemap": "^3.7.1",
+    "@astrojs/svelte": "^7.2.5",
     "@fontsource-variable/ibm-plex-sans": "^5.2.8",
     "@fontsource/iosevka": "^5.2.5",
-    "@iconify-json/simple-icons": "^1.2.65",
-    "astro": "^5.16.6",
+    "@iconify-json/simple-icons": "^1.2.74",
+    "astro": "^5.18.1",
     "astro-icon": "^1.1.5",
     "reading-time": "^1.5.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-slug": "^6.0.0",
     "sharp": "^0.34.5",
-    "svelte": "^5.46.1",
+    "svelte": "^5.53.12",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@typescript-eslint/parser": "^8.52.0",
-    "eslint": "^9.39.2",
-    "eslint-plugin-astro": "^1.5.0",
-    "prettier": "^3.7.4",
+    "@typescript-eslint/parser": "^8.57.0",
+    "eslint": "^10.0.3",
+    "eslint-plugin-astro": "^1.6.0",
+    "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1",
-    "prettier-plugin-svelte": "^3.4.1"
+    "prettier-plugin-svelte": "^3.5.1"
   }
 }
