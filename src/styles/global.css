@@ -1,11 +1,6 @@
-@import "@fontsource-variable/ibm-plex-sans/wght.css";
-@import "@fontsource-variable/ibm-plex-sans/wght-italic.css";
-@import "@fontsource/iosevka/latin.css";
-@import "@fontsource/iosevka/latin-italic.css";
-
 :root {
-  --font-sans: "IBM Plex Sans Variable", sans-serif;
-  --font-mono: "Iosevka", monospace;
+  --font-sans: var(--ibm-plex-sans), sans-serif;
+  --font-mono: var(--iosevka), monospace;
 
   --background-color: white;
   --secondary-bg: oklch(96.7% 0.001 286.375);

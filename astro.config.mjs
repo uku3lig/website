@@ -1,4 +1,4 @@
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
@@ -20,6 +20,23 @@ export default defineConfig({
     },
   },
   integrations: [sitemap(), icon(), svelte(), markdoc()],
+  fonts: [
+    {
+      name: "IBM Plex Sans",
+      cssVariable: "--ibm-plex-sans",
+      provider: fontProviders.fontsource(),
+      weights: ["100 900"],
+      subsets: ["latin"],
+      styles: ["normal", "italic"],
+    },
+    {
+      name: "Iosevka",
+      cssVariable: "--iosevka",
+      provider: fontProviders.fontsource(),
+      subsets: ["latin"],
+      styles: ["normal", "italic"],
+    },
+  ],
   markdown: {
     shikiConfig: {
       themes: {
