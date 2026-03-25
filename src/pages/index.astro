@@ -89,6 +89,12 @@ const links = {
         .map((post) => <PostEntry {...post} showDesc={false} />)
     }
   </ul>
+
+  <div id="badges">
+    <img src="/badges/uku.png" />
+    <a href="https://soopy.moe"><img src="badges/soopy.gif" /></a>
+    <img src="badges/transnow2.gif" />
+  </div>
 </PageLayout>
 
 <style>
@@ -115,5 +121,19 @@ const links = {
   .name {
     color: var(--accent-color);
     font-weight: bold;
+  }
+
+  #badges {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1ch;
+    image-rendering: crisp-edges;
+    margin-top: 48px;
+
+    a {
+      line-height: 0;
+      border: none;
+    }
   }
 </style>
