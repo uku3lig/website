@@ -19,6 +19,7 @@
     "@iconify-json/simple-icons": "^1.2.74",
     "astro": "^6.0.4",
     "astro-icon": "^1.1.5",
+    "luxon": "^3.7.2",
     "reading-time": "^1.5.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-slug": "^6.0.0",
@@ -27,6 +28,7 @@
     "typescript": "^5.9.3"
   },
   "devDependencies": {
+    "@types/luxon": "^3.7.1",
     "@typescript-eslint/parser": "^8.57.0",
     "eslint": "^10.0.3",
     "eslint-plugin-astro": "^1.6.0",
