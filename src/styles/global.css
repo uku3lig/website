@@ -7,7 +7,7 @@
   --tertiary-bg: oklch(87.1% 0.006 286.286);
   --text-color: black;
   --text-secondary: #747474;
-  --accent-color: oklch(50% 0.134 242.749);
+  --accent-color: #7c53ae;
   color-scheme: light;
 }
 
@@ -18,7 +18,7 @@
     --tertiary-bg: #343a40;
     --text-color: #f8f9fa;
     --text-secondary: #a9a9a9;
-    --accent-color: #a5d8ff;
+    --accent-color: #cfb0f4;
     color-scheme: dark;
   }
 
