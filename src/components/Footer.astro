@@ -16,6 +16,13 @@ import { Icon } from "astro-icon/components";
         </a>
       </li>
     </ul>
+
+    <div id="badges">
+      <a href="https://uku3lig.net"><img src="/badges/uku.png" /></a>
+      <a href="https://soopy.moe"><img src="badges/soopy.gif" /></a>
+      <img src="badges/transnow2.gif" />
+    </div>
+
     <p>
       <small>
         Built with <a href="https://astro.build">{Astro.generator}</a>, Inspired
@@ -44,5 +51,19 @@ import { Icon } from "astro-icon/components";
     list-style: none;
     gap: 1rem;
     margin-block: 0;
+  }
+
+  #badges {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1ch;
+    image-rendering: crisp-edges;
+    margin-top: 1rem;
+
+    a {
+      line-height: 0;
+      border: none;
+    }
   }
 </style>
