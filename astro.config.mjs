@@ -1,10 +1,8 @@
-import { defineConfig, fontProviders } from "astro/config";
+import { defineConfig, fontProviders, sharpImageService } from "astro/config";
 
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
-import markdoc from "@astrojs/markdoc";
 import icon from "astro-icon";
-
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 
@@ -19,7 +17,7 @@ export default defineConfig({
       },
     },
   },
-  integrations: [sitemap(), icon(), svelte(), markdoc()],
+  integrations: [sitemap(), icon(), svelte()],
   fonts: [
     {
       name: "IBM Plex Sans",
@@ -56,5 +54,10 @@ export default defineConfig({
         },
       ],
     ],
+  },
+  image: {
+    service: sharpImageService({
+      webp: { nearLossless: true },
+    }),
   },
 });
