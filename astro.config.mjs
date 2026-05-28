@@ -2,6 +2,7 @@ import { defineConfig, fontProviders, sharpImageService } from "astro/config";
 
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
+import { unified } from "@astrojs/markdown-remark";
 import icon from "astro-icon";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
@@ -42,18 +43,20 @@ export default defineConfig({
         dark: "github-dark",
       },
     },
-    rehypePlugins: [
-      rehypeSlug,
-      [
-        rehypeAutolinkHeadings,
-        {
-          behavior: "wrap",
-          properties: {
-            class: "heading-link",
+    processor: unified({
+      rehypePlugins: [
+        rehypeSlug,
+        [
+          rehypeAutolinkHeadings,
+          {
+            behavior: "wrap",
+            properties: {
+              class: "heading-link",
+            },
           },
-        },
+        ],
       ],
-    ],
+    }),
   },
   image: {
     service: sharpImageService({
