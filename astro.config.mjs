@@ -10,14 +10,6 @@ import rehypeSlug from "rehype-slug";
 // https://astro.build/config
 export default defineConfig({
   site: "https://uku3lig.net",
-  vite: {
-    server: {
-      watch: {
-        // direnv somehow makes vite exponentially slower with bun
-        ignored: ["**/.direnv/**"],
-      },
-    },
-  },
   integrations: [sitemap(), icon(), svelte()],
   fonts: [
     {
