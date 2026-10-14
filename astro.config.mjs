@@ -2,10 +2,9 @@ import { defineConfig, fontProviders, sharpImageService } from "astro/config";
 
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
-import { unified } from "@astrojs/markdown-remark";
+import { satteri } from "@astrojs/markdown-satteri";
 import icon from "astro-icon";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeSlug from "rehype-slug";
+import { linkHeadings } from "./src/utils/satteri-link-headings";
 
 // https://astro.build/config
 export default defineConfig({
@@ -35,19 +34,8 @@ export default defineConfig({
         dark: "github-dark",
       },
     },
-    processor: unified({
-      rehypePlugins: [
-        rehypeSlug,
-        [
-          rehypeAutolinkHeadings,
-          {
-            behavior: "wrap",
-            properties: {
-              class: "heading-link",
-            },
-          },
-        ],
-      ],
+    processor: satteri({
+      hastPlugins: [linkHeadings],
     }),
   },
   image: {
