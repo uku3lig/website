@@ -15,7 +15,7 @@ export default defineConfig({
       name: "IBM Plex Sans",
       cssVariable: "--ibm-plex-sans",
       provider: fontProviders.fontsource(),
-      weights: ["100 900"],
+      weights: ["100 700"],
       subsets: ["latin"],
       styles: ["normal", "italic"],
     },
