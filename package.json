@@ -11,13 +11,13 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.10",
-    "@astrojs/markdown-satteri": "^0.4.3",
+    "@astrojs/check": "^0.9.12",
+    "@astrojs/markdown-satteri": "^0.4.5",
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",
-    "@astrojs/svelte": "^9.0.1",
+    "@astrojs/svelte": "^9.1.1",
     "@iconify-json/simple-icons": "^1.2.100",
-    "astro": "^7.3.8",
+    "astro": "^7.4.2",
     "astro-icon": "^1.2.0",
     "luxon": "^3.7.2",
     "reading-time": "^1.5.0",
@@ -28,8 +28,8 @@
   },
   "devDependencies": {
     "@types/luxon": "^3.7.6",
-    "@typescript-eslint/parser": "^8.71.2",
-    "eslint": "^10.12.0",
+    "@typescript-eslint/parser": "^8.72.0",
+    "eslint": "^10.13.0",
     "eslint-plugin-astro": "^2.1.1",
     "prettier": "^3.9.10",
     "prettier-plugin-astro": "^0.14.1",
@@ -38,5 +38,5 @@
   "engines": {
     "node": "^24"
   },
-  "packageManager": "pnpm@11.14.0"
+  "packageManager": "pnpm@11.28.8+sha512.f6988a32046b9a3f78d7d7ee0747926bbe905ff9dff73bf19abb87bd7d1906a2ac90d93f73be32b5f9e14c2899569bcb0c9c5ec8a19e083f5d71bbab6dd9e0b8"
 }
