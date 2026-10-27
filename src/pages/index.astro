@@ -5,8 +5,10 @@ import PageLayout from "../layouts/PageLayout.astro";
 import PostEntry from "../components/PostEntry.astro";
 import NowListening from "../components/NowListening.svelte";
 import Age from "../components/Age.svelte";
+import { getName } from "../utils/name";
 
 const posts = await getCollection("posts");
+const title = `${getName(Astro.site)}'s website`;
 
 const links = {
   github: "https://github.com/uku3lig",
@@ -27,11 +29,12 @@ const links = {
 };
 ---
 
-<PageLayout title="uku's website">
+<PageLayout {title}>
   <p>
-    hi! i'm <span class="name">uku</span>, a <Age client:load /> student (currently
-    doing an apprenticeship) who loves to mod games (especially Minecraft) and tinker
-    around in my free time.
+    hi! i'm <span class="name">{getName(Astro.site)}</span>, a <Age
+      client:load
+    /> student (currently doing an apprenticeship) who loves to mod games (especially
+    Minecraft) and tinker around in my free time.
   </p>
 
   <p>

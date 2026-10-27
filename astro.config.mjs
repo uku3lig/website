@@ -6,9 +6,11 @@ import { satteri } from "@astrojs/markdown-satteri";
 import icon from "astro-icon";
 import { linkHeadings } from "./src/utils/satteri-link-headings";
 
+const site = process.env.SITE_URL ?? "https://uku3lig.net";
+
 // https://astro.build/config
 export default defineConfig({
-  site: "https://uku3lig.net",
+  site,
   integrations: [sitemap(), icon(), svelte()],
   fonts: [
     {
